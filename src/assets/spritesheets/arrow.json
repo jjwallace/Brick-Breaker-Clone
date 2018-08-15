@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "cannon0001.png",
+	"frame": {"x":1,"y":1,"w":163,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":32},
+	"sourceSize": {"w":164,"h":32}
+},
+{
+	"filename": "cannon0002.png",
+	"frame": {"x":166,"y":1,"w":163,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":32},
+	"sourceSize": {"w":164,"h":32}
+},
+{
+	"filename": "cannon0003.png",
+	"frame": {"x":331,"y":1,"w":163,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":32},
+	"sourceSize": {"w":164,"h":32}
+},
+{
+	"filename": "cannon0004.png",
+	"frame": {"x":496,"y":1,"w":163,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":32},
+	"sourceSize": {"w":164,"h":32}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "arrow.png",
+	"format": "RGBA8888",
+	"size": {"w":660,"h":34},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:155f3276a85665ccf17b69f9aefdba15:25bba8f13a3ed942cc503824822fc18c:da7b7f302b584bc2843bb50b1ff3bd62$"
+}
+}

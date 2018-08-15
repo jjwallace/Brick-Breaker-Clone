@@ -66,7 +66,7 @@ module.exports = {
                 use: ['expose-loader?p2'] 
             },
             {
-                test: /\.(png|jpg|gif|svg|pvr|pkm)$/,
+                test: /\.(png|jpg|gif|svg|pvr|pkm|json|mp3|ogg)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'assets/[path][name].[ext]?[hash]',
