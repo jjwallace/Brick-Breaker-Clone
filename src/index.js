@@ -6,6 +6,8 @@ class Game extends Phaser.Game {
 
     constructor() {
         
+        
+        
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             var winH = 860;
             var winW = 512;
@@ -34,6 +36,8 @@ class Game extends Phaser.Game {
 //        game.scale.pageAlignVertically = true;
         
         super(winW, winH, Phaser.CANVAS, '');
+        
+        
 
         this.state.add('BootState', BootState);
         this.state.add('PreloadState', PreloadState);

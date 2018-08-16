@@ -1,4 +1,5 @@
 import Ball from '../objects/ball';
+import PlayController from '../controllers/play.controller';
 
 class Balls extends Phaser.Sprite {
 
@@ -14,16 +15,22 @@ class Balls extends Phaser.Sprite {
         this.maxBalls = maxBalls;
         this.ballCount = 0;
         
+        this.anchor.setTo(0.5, 0.5);
+        
         this.balls = [];
         
         game.time.events.repeat(Phaser.Timer.SECOND / 10, this.maxBalls, addSprite, this);
  
         function addSprite() {
-            if( this.ballCount < this.maxBalls){
-								this.game.miscGroup.children[0].animations.play('ani', 30, false);  
-							
-                this.balls[this.ballCount] = new Ball(this.game, this.x, this.y, 'ball', this.angle, this.speed);
-                this.ballCount ++;
+            this.balls[this.ballCount] = new Ball(this.game, this.x, this.y, 'ball', this.ballCount, this.angle, this.speed);
+            
+            this.ballCount ++;
+            
+            if( this.ballCount == this.maxBalls){
+                PlayController.playVars.allBallsLaunched = true;
+                PlayController.endLaunch();
+                //this.game.stage.DragObj.arrow.y += 200;
+                this.alpha = false;
             }
         }
         

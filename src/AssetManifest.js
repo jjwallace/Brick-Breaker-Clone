@@ -6,7 +6,8 @@ const AssetManifest = {
         'blank',
         'fire',
 				'ray',
-        'ui_bottom'
+        'ui_bottom',
+        'cannon'
     ],
 		'spritesheets': [
         'dna',
@@ -22,6 +23,7 @@ const AssetManifest = {
         'boom'
     ],
 		'json':[
+        'game_data',
         'lvl0',
         'lvl1',
         'lvl2'

@@ -1,11 +1,14 @@
+import PlayController from '../controllers/play.controller';
+
 class Ball extends Phaser.Sprite {
 
-    constructor(game, x, y, key, angle, speed) {
+    constructor(game, x, y, key, id, angle, speed) {
         super(game, x, y, key);
         this.game.stage.addChild(this);
         this.animations.add('ani');    
         //this.animations.play('ani', 30, true);
 
+        this.id = id;
         this.anchor.setTo(0.5, 0.5);
         
         game.physics.arcade.enable(this);
@@ -36,7 +39,10 @@ class Ball extends Phaser.Sprite {
         
         function outOfBoundsTop (sprite) {
             this.destroy();
-            //console.log('OUT OF BOUNDS')
+            if(sprite.id == 0){
+                PlayController.playVars.endPlayXLocation = sprite.x;
+                console.log("OUT OF PLAY: " + sprite.x);
+            }
         }
 
         this.checkWorldBounds = true;
@@ -46,7 +52,7 @@ class Ball extends Phaser.Sprite {
     }
     
     update() {
-        //this.x ++;
+        //this.game.physics.arcade.velocityFromAngle(this.angle, PlayController.playVars.currentBallSpeed, this.body.velocity);
     }
 }
 

@@ -3,6 +3,8 @@ import Block from '../objects/block';
 import Blocks from '../objects/blocks';
 import Burst from '../objects/burst';
 
+import PlayController from '../controllers/play.controller';
+
 class MainState extends Phaser.State {
 
     create() {
@@ -31,7 +33,7 @@ class MainState extends Phaser.State {
         this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
 			
         var dragObject = new DragObj(this.game, this.game.world.centerX, this.game.world.height);
-
+        
     }
     
     update(){
@@ -43,7 +45,7 @@ class MainState extends Phaser.State {
             brick.text.setText(brick.health);
 
             if(brick.health <= 0){
-                console.log('BLOCKS TOTAL: ' + this.game.blockGroup.countLiving() + ' | Block ' + brick.id + ' Destroyed X:' + brick.x + ' Y:' + brick.y);
+                //console.log('BLOCKS TOTAL: ' + this.game.blockGroup.countLiving() + ' | Block ' + brick.id + ' Destroyed X:' + brick.x + ' Y:' + brick.y);
                 
                 new Burst(brick.game, brick.x, brick.y, 'boom');
                 brick.text.setText('');
@@ -63,10 +65,7 @@ class MainState extends Phaser.State {
         }.bind(this);
         
         function ballOutOfPlay(ball, brick) {
-
-            console.log("OUT OF PLAY");
             ball.destroy();
-           
         }
         
         if(this.game.blockGroup.countLiving() == 0  && this.game.ballGroup.countLiving() == 0){

@@ -48,13 +48,6 @@ class Block extends Phaser.Sprite {
             
         }.bind(this);
         
-//        this.destroyMe = function() {
-//            console.log('BLOCK DESTROYED: ')
-//            this.destroy();
-//            //this.blocks.splice(index);
-//            //this.alive = false;
-//        }.bind(this);
-        
         game.physics.arcade.enable(this);
         this.body.bounce.set(1);
         this.body.immovable = true;

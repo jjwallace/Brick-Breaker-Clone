@@ -28,9 +28,9 @@ class Blocks extends Phaser.Sprite {
                 this.blocks[i].destroy();
             }else{
                 var blockType = jsonData.layers[0].data[i]-1;
-                this.blocks[i] = new Block(this.game, myX, myY, 'blocks', 10, blockType, i);
+                this.blocks[i] = new Block(this.game, myX, myY, 'blocks', 1 + blockType * 2, blockType, i);
                 this.blocks[i].frame = blockType;
-                this.blocks[i].scale.set(0.5);
+                this.blocks[i].scale.set(0);
             }
         }
         

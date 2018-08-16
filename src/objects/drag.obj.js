@@ -4,11 +4,16 @@ import Aim from '../objects/aim';
 
 import RayCast from '../objects/raycast';
 
+import PlayController from '../controllers/play.controller';
+
 class DragObj extends Phaser.Sprite {
 
     constructor(game, x, y) {
         super(game, x, y);
         this.game.stage.addChild(this);
+        
+        this.x = x;
+        this.y = y;
         
         this.arrowX = this.game.world.centerX;
         this.arrowY = this.game.world.height - 100;
@@ -39,11 +44,8 @@ class DragObj extends Phaser.Sprite {
 				this.aim.visible = false;
 			
         function onDown(sprite, pointer) {
-            
+            //Reserved for Raycast.
         }
-
-        //this.game.ballGroup.countLiving()
-        //check if there are balls
         
         function onDragStart(sprite, pointer) {
 						this.aim.visible = true;
@@ -51,14 +53,60 @@ class DragObj extends Phaser.Sprite {
 
         function onDragStop(sprite, pointer) {
 						this.aim.visible = false;
-            var speed = 800;
+            var speed = PlayController.playVars.ballSpeed;
             var angle = this.arrow.angle;
             var maxBalls = 20;
-            var myBalls = new Balls(this.game, this.arrow.x, this.arrow.y, 'blank', angle, speed, maxBalls);
+            this.myBalls = new Balls(this.game, this.arrow.x, this.arrow.y, 'ball', angle, speed, maxBalls);
+            
+            PlayController.playVars.allBallsLaunched = false;
+            
+            this.game.add.tween(this.sprite).to( { x: this.x }, 2000, Phaser.Easing.Quartic.Out, true);
+            
+            this.arrow.visible = false;
+            
+            PlayController.playVars.playing = true;
+            PlayController.playVars.playTimer = 0;
+            
+            this.sprite.inputEnabled = false;
         }
     }
 
     update() {
+        
+        //Increment Play Timer
+        if(PlayController.playVars.playing){
+            
+            PlayController.playVars.currentBallSpeed ++;
+            
+            //Check if balls are in play
+            if(this.game.ballGroup.countLiving() == 0 && PlayController.playVars.playTimer > 10){
+                console.log('PLAY COMPLETE');
+                
+                PlayController.playVars.playing = false;
+                this.sprite.inputEnabled = true;
+                
+                PlayController.playVars.currentBallSpeed = PlayController.playVars.ballSpeed;
+                
+                this.arrow.y = this.arrowY + 150;
+                this.arrow.x = PlayController.playVars.endPlayXLocation;
+                this.aim.x = this.arrow.x;
+                
+                this.arrow.visible = true;
+                this.game.add.tween(this.arrow).to( {x: PlayController.playVars.endPlayXLocation , y: this.arrowY }, 500, Phaser.Easing.Quartic.Out, true);
+            }
+            
+            PlayController.playVars.playTimer ++;
+            //console.log(PlayController.playVars.playTimer);
+
+            //this.game.debug.text('Time: ' + PlayController.playVars.playTimer);
+            
+//            this.game.ballGroup.forEach(function(item) {
+//
+//                console.log(item.velocity);
+//
+//            });
+            
+        }
         
 				var myAngle = -((this.x - this.sprite.x)/2 - 90)+180;
 				this.arrow.angle = myAngle;
