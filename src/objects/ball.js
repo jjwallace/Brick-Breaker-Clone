@@ -29,20 +29,17 @@ class Ball extends Phaser.Sprite {
         
         game.ballGroup.add(this);
         
-        //set bounding box a little smaller (no sure the format of the 2s)
-				//this.body.setSize(2, 2, 2, 2);
-        
         function hitWorldBounds (sprite) {
             sfxHit.play();
-            //sprite.play('ani');
         }
         
         function outOfBoundsTop (sprite) {
-            this.destroy();
             if(sprite.id == 0){
                 PlayController.playVars.endPlayXLocation = sprite.x;
-                console.log("OUT OF PLAY: " + sprite.x);
+                console.log("FIRST BALL OUT AT X: " + sprite.x);
+                //console.log("SPEED OF BALL: " + sprite.body.speed);
             }
+            this.destroy();
         }
 
         this.checkWorldBounds = true;
@@ -51,8 +48,14 @@ class Ball extends Phaser.Sprite {
         this.body.onWorldBounds.add(hitWorldBounds, this);
     }
     
+    speedUpdate(speed){
+        var speedInc = speed / this.body.speed;
+        this.body.velocity.x *= speedInc;
+        this.body.velocity.y *= speedInc;
+    }
+    
     update() {
-        //this.game.physics.arcade.velocityFromAngle(this.angle, PlayController.playVars.currentBallSpeed, this.body.velocity);
+        
     }
 }
 

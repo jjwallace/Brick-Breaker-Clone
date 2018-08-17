@@ -1,6 +1,8 @@
 import Ball from '../objects/ball';
 import PlayController from '../controllers/play.controller';
 
+import Overlay from '../ui/overlay';
+
 class Balls extends Phaser.Sprite {
 
     constructor(game, x, y, key, angle, speed, maxBalls ) {
@@ -9,6 +11,8 @@ class Balls extends Phaser.Sprite {
         
         this.x = x;
         this.y = y;
+        
+        this.game = game;
         
         this.speed = speed;
         this.angle = angle;
@@ -34,12 +38,47 @@ class Balls extends Phaser.Sprite {
             }
         }
         
+        this.stepCounter = game.time.events.repeat(Phaser.Timer.SECOND * 5, 5, tick, this);
+        
+        function tick() {
+            //Increase all balls speed        
+            var speedIncrease = function(increment){
+                PlayController.playVars.currentBallSpeed += increment;
+
+                this.game.ballGroup.forEach(function(item) {
+                    item.speedUpdate(increment);
+                });
+                console.log('Ball Speed Increased: ' + speed)
+            }.bind(this);
+
+            PlayController.playVars.currentBallSpeed += PlayController.playVars.ballSpeedIncrement;
+            
+            //Increase ball speed at time in seconds of play
+            speedIncrease(PlayController.playVars.currentBallSpeed);
+
+            this.overlay = new Overlay(this.game, this.game.world.centerX, this.game.world.centerY, 'fast_forward');
+        }
+    }
+    
+    stopEverything(){
+        this.game.time.events.remove(this.stepCounter);
     }
     
     update(){
-                
-    }
-    
+//        if(PlayController.playVars.playing){
+//            var seconds = Math.floor(PlayController.playVars.playTimer/30);
+//            
+//            console.log(seconds);
+//            
+//            if(PlayController.playVars.speedControllTimer == seconds-1){
+//                PlayController.playVars.speedControllTimer = seconds;
+//                var increment = PlayController.playVars.ballSpeedIncrement;
+//
+//                  
+//            }
+//            
+//        }
+    }   
 }
 
 export default Balls;

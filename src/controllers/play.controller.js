@@ -13,13 +13,13 @@ class PlayController {
             playTimer: 0,
             allBallsLaunched: false,
             endPlayXLocation: 0,
+            ballSpeedIncrement: 400,
+            speedControllTimer: 0,
             sound : false,
             ballSpeed : 800,
             currentBallSpeed : 800,
             maxBallSpeed: 5000
         }
-        
-        
         
         return instance;
     }

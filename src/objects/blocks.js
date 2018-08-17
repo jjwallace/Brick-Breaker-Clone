@@ -43,22 +43,9 @@ class Blocks extends Phaser.Sprite {
     update(){
 //        if(this.game.blockGroup.countLiving() == 1){
 //            console.log('GAME COMPLETE');
-//            this.destroy();
 //        }
     }
     
-    render(){
-        
-        this.game.debug.start(20, 20, 'blue');
-        this.game.debug.line();
-        this.game.debug.line('BLOCK COUNT:', this.game.blockGroup.countLiving());
-        this.game.debug.line( 'BALL COUNT:', this.game.ballGroup.countLiving());
-        this.game.debug.stop();
-//        game.debug.text( 'BLOCK COUNT:', this.game.blockGroup.countLiving(), 10, 20 );
-//        game.debug.text( 'BALL COUNT:', this.game.ballGroup.countLiving(), 10, 250 );
-
-    }
-
 }
 
 export default Blocks;

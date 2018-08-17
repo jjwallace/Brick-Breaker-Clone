@@ -7,7 +7,8 @@ const AssetManifest = {
         'fire',
 				'ray',
         'ui_bottom',
-        'cannon'
+        'cannon',
+        'fast_forward'
     ],
 		'spritesheets': [
         'dna',

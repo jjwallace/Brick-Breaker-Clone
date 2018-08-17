@@ -6,8 +6,6 @@ class Game extends Phaser.Game {
 
     constructor() {
         
-        
-        
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             var winH = 860;
             var winW = 512;

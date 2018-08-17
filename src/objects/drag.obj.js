@@ -48,10 +48,12 @@ class DragObj extends Phaser.Sprite {
         }
         
         function onDragStart(sprite, pointer) {
+            
 						this.aim.visible = true;
         }
 
         function onDragStop(sprite, pointer) {
+            
 						this.aim.visible = false;
             var speed = PlayController.playVars.ballSpeed;
             var angle = this.arrow.angle;
@@ -68,6 +70,11 @@ class DragObj extends Phaser.Sprite {
             PlayController.playVars.playTimer = 0;
             
             this.sprite.inputEnabled = false;
+            
+            this.game.add.tween(this.uiBottom).to( { y: this.y+200 }, 900, Phaser.Easing.Quartic.Out, true);
+            
+            this.game.add.tween(this.sprite).to( { y: this.y+200 }, 900, Phaser.Easing.Quartic.Out, true);
+            
         }
     }
 
@@ -75,8 +82,6 @@ class DragObj extends Phaser.Sprite {
         
         //Increment Play Timer
         if(PlayController.playVars.playing){
-            
-            PlayController.playVars.currentBallSpeed ++;
             
             //Check if balls are in play
             if(this.game.ballGroup.countLiving() == 0 && PlayController.playVars.playTimer > 10){
@@ -93,18 +98,15 @@ class DragObj extends Phaser.Sprite {
                 
                 this.arrow.visible = true;
                 this.game.add.tween(this.arrow).to( {x: PlayController.playVars.endPlayXLocation , y: this.arrowY }, 500, Phaser.Easing.Quartic.Out, true);
+                
+                this.myBalls.stopEverything();
+                
+                this.game.add.tween(this.uiBottom).to( { y: this.y }, 1000, Phaser.Easing.Quartic.Out, true);
+
+                this.game.add.tween(this.sprite).to( { y: this.y }, 1000, Phaser.Easing.Quartic.Out, true);
             }
             
             PlayController.playVars.playTimer ++;
-            //console.log(PlayController.playVars.playTimer);
-
-            //this.game.debug.text('Time: ' + PlayController.playVars.playTimer);
-            
-//            this.game.ballGroup.forEach(function(item) {
-//
-//                console.log(item.velocity);
-//
-//            });
             
         }
         
