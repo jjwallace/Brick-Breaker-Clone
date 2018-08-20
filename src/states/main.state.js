@@ -23,8 +23,9 @@ class MainState extends Phaser.State {
         //this.game.physics.arcade.gravity.y = 100;
         
 				//this.game.ballGroup.rayGroup = true;
-        this.game.ballGroup.enableBody = true;
+        
         this.game.blockGroup.enableBody = true;
+        this.game.ballGroup.enableBody = true;
         
 				this.game.physics.arcade.enable(this.game.rayGroup);
         this.game.physics.arcade.enable(this.game.ballGroup);
@@ -77,8 +78,13 @@ class MainState extends Phaser.State {
         }
         
         //this.game.physics.arcade.collide(this.game.ballGroup, this.game.uiBottom, ballOutOfPlay);
+        
         this.game.physics.arcade.collide(this.game.rayGroup, this.game.blockGroup);
-        this.game.physics.arcade.collide(this.game.ballGroup, this.game.blockGroup, ballHitBrick);
+        
+        //TURN ON AND OFF BALL / BLOCK COLLISION WHEN ASKING BALLS TO RETURN
+        if(PlayController.playVars.returnBalls == false){
+            this.game.physics.arcade.collide(this.game.ballGroup, this.game.blockGroup, ballHitBrick);
+        }
     }
 
 }

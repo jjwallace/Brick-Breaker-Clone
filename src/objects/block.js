@@ -17,7 +17,7 @@ class Block extends Phaser.Sprite {
         var hb = blockSize / 2;
         
         //SOUNDS
-        this.sfxHit = this.game.add.audio('hit_ball');
+        this.sfxHit = this.game.add.audio('pop');
         this.sfxBoom = this.game.add.audio('boom');
         
         this.anchor.set(0.5);

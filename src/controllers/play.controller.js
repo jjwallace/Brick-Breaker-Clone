@@ -11,6 +11,7 @@ class PlayController {
             score : 0,
             playing: false,
             playTimer: 0,
+            returnBalls: false,
             allBallsLaunched: false,
             endPlayXLocation: 0,
             ballSpeedIncrement: 400,

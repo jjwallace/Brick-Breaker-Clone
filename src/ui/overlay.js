@@ -6,12 +6,13 @@ class Overlay extends Phaser.Sprite {
         
         this.anchor.setTo(0.5, 0.5);
 
-        var sfx = game.add.audio('hit_ball');
+        var sfx = game.add.audio('speed');
 
         sfx.play();
         
         function theEnd(){
             this.destroy();
+            console.log('speed')
         }
         
         this.alpha = 0;

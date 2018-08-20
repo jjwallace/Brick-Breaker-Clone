@@ -30,7 +30,7 @@ class Ball extends Phaser.Sprite {
         game.ballGroup.add(this);
         
         function hitWorldBounds (sprite) {
-            sfxHit.play();
+            //sfxHit.play();
         }
         
         function outOfBoundsTop (sprite) {

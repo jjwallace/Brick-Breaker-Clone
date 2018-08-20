@@ -8,7 +8,8 @@ const AssetManifest = {
 				'ray',
         'ui_bottom',
         'cannon',
-        'fast_forward'
+        'fast_forward',
+        'return'
     ],
 		'spritesheets': [
         'dna',
@@ -21,7 +22,9 @@ const AssetManifest = {
     ],
 		'audio': [
         'hit_ball',
-        'boom'
+        'boom',
+        'speed',
+        'pop'
     ],
 		'json':[
         'game_data',

@@ -15,12 +15,29 @@ class DragObj extends Phaser.Sprite {
         this.x = x;
         this.y = y;
         
+        this.game = game;
+        
         this.arrowX = this.game.world.centerX;
         this.arrowY = this.game.world.height - 100;
         
         this.arrow = new Cannon(this.game, this.arrowX, this.arrowY, 'ball');
 				this.game.stage.addChild(this.arrow);
 				this.game.miscGroup.add(this.arrow);
+          
+        var listener = function() {
+                PlayController.playVars.returnBalls = true;
+            
+                this.game.ballGroup.forEach(function(item) {
+                    this.game.add.tween(item).to( { x: this.game.world.centerX, y: this.y +200 }, 900, Phaser.Easing.Quartic.InOut, true);
+                }.bind(this));
+                console.log('return balls: ')
+            
+        }.bind(this);
+        
+        this.uiReturn = game.add.sprite(x, y + 200, 'return');
+        this.uiReturn.anchor.set(0.5, 1);
+        this.uiReturn.inputEnabled = true;
+        this.uiReturn.events.onInputDown.add(listener, this);
         
         this.uiBottom = game.add.sprite(x, y, 'ui_bottom');
         this.uiBottom.anchor.set(0.5, 1);
@@ -72,8 +89,8 @@ class DragObj extends Phaser.Sprite {
             this.sprite.inputEnabled = false;
             
             this.game.add.tween(this.uiBottom).to( { y: this.y+200 }, 900, Phaser.Easing.Quartic.Out, true);
-            
             this.game.add.tween(this.sprite).to( { y: this.y+200 }, 900, Phaser.Easing.Quartic.Out, true);
+            this.game.add.tween(this.uiReturn).to( { y: this.y }, 5000, Phaser.Easing.Quartic.Out, true);
             
         }
     }
@@ -88,6 +105,7 @@ class DragObj extends Phaser.Sprite {
                 console.log('PLAY COMPLETE');
                 
                 PlayController.playVars.playing = false;
+                PlayController.playVars.returnBalls = false;
                 this.sprite.inputEnabled = true;
                 
                 PlayController.playVars.currentBallSpeed = PlayController.playVars.ballSpeed;
@@ -102,8 +120,8 @@ class DragObj extends Phaser.Sprite {
                 this.myBalls.stopEverything();
                 
                 this.game.add.tween(this.uiBottom).to( { y: this.y }, 1000, Phaser.Easing.Quartic.Out, true);
-
                 this.game.add.tween(this.sprite).to( { y: this.y }, 1000, Phaser.Easing.Quartic.Out, true);
+                this.game.add.tween(this.uiReturn).to( { y: this.y+200 }, 500, Phaser.Easing.Quartic.Out, true);
             }
             
             PlayController.playVars.playTimer ++;
