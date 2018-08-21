@@ -1,0 +1,12 @@
+{ "columns":8,
+ "image":"..\/images\/blocks.png",
+ "imageheight":128,
+ "imagewidth":256,
+ "margin":0,
+ "name":"blocks",
+ "spacing":0,
+ "tilecount":32,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}

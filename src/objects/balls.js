@@ -23,7 +23,7 @@ class Balls extends Phaser.Sprite {
         
         this.balls = [];
         
-        game.time.events.repeat(Phaser.Timer.SECOND / 10, this.maxBalls, addSprite, this);
+        this.spawnCounter = game.time.events.repeat(Phaser.Timer.SECOND / 10, this.maxBalls, addSprite, this);
  
         function addSprite() {
             this.balls[this.ballCount] = new Ball(this.game, this.x, this.y, 'ball', this.ballCount, this.angle, this.speed);
@@ -58,6 +58,10 @@ class Balls extends Phaser.Sprite {
 
             this.overlay = new Overlay(this.game, this.game.world.centerX, this.game.world.centerY, 'fast_forward');
         }
+    }
+    
+    stopSpawningBalls(){
+        this.game.time.events.remove(this.spawnCounter);
     }
     
     stopEverything(){

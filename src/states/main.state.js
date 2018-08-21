@@ -1,4 +1,4 @@
-import DragObj from '../objects/drag.obj';
+import PlayObj from '../objects/play';
 import Block from '../objects/block';
 import Blocks from '../objects/blocks';
 import Burst from '../objects/burst';
@@ -33,7 +33,7 @@ class MainState extends Phaser.State {
         
         this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
 			
-        var dragObject = new DragObj(this.game, this.game.world.centerX, this.game.world.height);
+        var dragObject = new PlayObj(this.game, this.game.world.centerX, this.game.world.height);
         
     }
     

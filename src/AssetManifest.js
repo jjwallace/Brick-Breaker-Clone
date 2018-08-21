@@ -1,6 +1,5 @@
 const AssetManifest = {
 		'images': [
-        'gamedevmania-logo',
         'btn_drag',
         'block',
         'blank',

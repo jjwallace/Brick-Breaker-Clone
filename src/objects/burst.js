@@ -17,6 +17,8 @@ class Burst extends Phaser.Sprite {
         
         anim.killOnComplete = true;
         
+        //THIS EMITTER IS TO HEAVY FOR COMMON USE, LEGACY CODE WILL REMAIL HERE FOR FUTURE USE
+        
 //        this.emitter = this.game.add.emitter(x+mid, y+mid, 100);
 //        //this.emitter.scale.set(0.5);
 //        this.emitter.makeParticles('fire');
@@ -32,9 +34,13 @@ class Burst extends Phaser.Sprite {
 //            this.emitter.destroy();
 //            console.log('Emitter Destroyed');
 //        }, this);
+        
+        
     }
 
     update() {
+        //THIS EMITTER IS TO HEAVY FOR COMMON USE, LEGACY CODE WILL REMAIL HERE FOR FUTURE USE
+        
 //        this.emitter.forEachAlive(function(p){p.alpha = p.lifespan / this.emitter.lifespan;	}.bind(this));
     }
 }
