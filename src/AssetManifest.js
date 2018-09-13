@@ -8,16 +8,19 @@ const AssetManifest = {
         'ui_bottom',
         'cannon',
         'fast_forward',
-        'return'
+        'return',
+        'ui_box',
+        'btn_next',
+        'star'
     ],
 		'spritesheets': [
         'dna',
         'ball',
-        'arrow',
         'boom',
         'damage',
         'blocks',
-				'convey'
+				'convey',
+        'lvl_sprites'
     ],
 		'audio': [
         'hit_ball',
@@ -27,9 +30,11 @@ const AssetManifest = {
     ],
 		'json':[
         'game_data',
+        'lvllist',
         'lvl0',
         'lvl1',
         'lvl2'
+        
 		]
 };
 

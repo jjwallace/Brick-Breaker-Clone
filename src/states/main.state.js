@@ -5,9 +5,14 @@ import Burst from '../objects/burst';
 
 import PlayController from '../controllers/play.controller';
 
+import MenuLevel from '../ui/menu.level';
+import NextMenu from '../ui/menu.next';
+
 class MainState extends Phaser.State {
 
     create() {
+        
+        
         this.levelNum = 0;
         this.level = 'lvl' + this.levelNum;
         
@@ -19,10 +24,7 @@ class MainState extends Phaser.State {
         this.game.blockGroup = this.game.add.group();
 				
 				this.game.miscGroup = this.game.add.group();
-				
-        //this.game.physics.arcade.gravity.y = 100;
-        
-				//this.game.ballGroup.rayGroup = true;
+
         
         this.game.blockGroup.enableBody = true;
         this.game.ballGroup.enableBody = true;
@@ -35,6 +37,9 @@ class MainState extends Phaser.State {
 			
         var dragObject = new PlayObj(this.game, this.game.world.centerX, this.game.world.height);
         
+        //var lvlMenu = new MenuLevel(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+        
+        this.interLevelMenu = new NextMenu(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
     }
     
     update(){
@@ -46,8 +51,6 @@ class MainState extends Phaser.State {
             brick.text.setText(brick.health);
 
             if(brick.health <= 0){
-                //console.log('BLOCKS TOTAL: ' + this.game.blockGroup.countLiving() + ' | Block ' + brick.id + ' Destroyed X:' + brick.x + ' Y:' + brick.y);
-                
                 new Burst(brick.game, brick.x, brick.y, 'boom');
                 brick.text.setText('');
                 brick.sfxBoom.play();
@@ -70,14 +73,27 @@ class MainState extends Phaser.State {
         }
         
         if(this.game.blockGroup.countLiving() == 0  && this.game.ballGroup.countLiving() == 0){
+
+            if(this.playing){
+                var interLevelMenu = new NextMenu(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+                this.playing = false;
+            }
+        }
+        
+        this.playing = PlayController.playVars.playing;
+        this.newLevel = PlayController.playVars.newLevel;
+        
+        if(this.playing == false && this.newLevel == true){
             this.levelNum ++;
             this.level = 'lvl' + this.levelNum;
 
-            //this.game.ballGroup.forEach(function (c) {c.destroy(); });
             this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
+            
+            PlayController.playVars.playing = true;
+            PlayController.playVars.newLevel = false;
+            
+            this.interLevelMenu.destroy();
         }
-        
-        //this.game.physics.arcade.collide(this.game.ballGroup, this.game.uiBottom, ballOutOfPlay);
         
         this.game.physics.arcade.collide(this.game.rayGroup, this.game.blockGroup);
         
@@ -85,6 +101,13 @@ class MainState extends Phaser.State {
         if(PlayController.playVars.returnBalls == false){
             this.game.physics.arcade.collide(this.game.ballGroup, this.game.blockGroup, ballHitBrick);
         }
+    }
+    
+    nextLevel(){
+        this.levelNum ++;
+        this.level = 'lvl' + this.levelNum;
+
+        this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
     }
 
 }

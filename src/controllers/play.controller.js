@@ -10,6 +10,7 @@ class PlayController {
         this.playVars = {
             score : 0,
             playing: false,
+            newLevel: false,
             playTimer: 0,
             returnBalls: false,
             allBallsLaunched: false,

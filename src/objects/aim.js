@@ -22,6 +22,7 @@ class Aim extends Phaser.Sprite {
 			this.aimer[i].smoothed = false;
 			
 			this.addChild(this.aimer[i]);
+        
 		}
 	}
 
