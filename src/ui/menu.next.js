@@ -52,8 +52,6 @@ class MenuNext extends Phaser.Sprite {
         this.menu.inputEnabled = true;
         this.menu.events.onInputDown.add(clickNext, this);
         
-        
-        
         function clickNext(pointer){
             console.log(game);
             PlayController.playVars.playing = false;
@@ -68,7 +66,8 @@ class MenuNext extends Phaser.Sprite {
 //            }
             console.log(this)
             
-            this.game.menuNextGroup.destroy();
+            this.destroy();
+            game.menuNextGroup.destroy();
 
         }
         

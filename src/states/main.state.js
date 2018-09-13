@@ -39,7 +39,7 @@ class MainState extends Phaser.State {
         
         //var lvlMenu = new MenuLevel(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
         
-        this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+        //this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
     }
     
     update(){
@@ -74,9 +74,9 @@ class MainState extends Phaser.State {
         
         if(this.game.blockGroup.countLiving() == 0  && this.game.ballGroup.countLiving() == 0){
 
-            if(this.playing){
+            if(PlayController.playVars.playing){
                 this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
-                this.playing = false;
+                PlayController.playVars.playing = false;
             }
         }
         
