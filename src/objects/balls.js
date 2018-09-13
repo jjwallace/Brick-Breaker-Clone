@@ -38,25 +38,28 @@ class Balls extends Phaser.Sprite {
             }
         }
         
+        
         this.stepCounter = game.time.events.repeat(Phaser.Timer.SECOND * 5, 5, tick, this);
         
         function tick() {
-            //Increase all balls speed        
-            var speedIncrease = function(increment){
-                PlayController.playVars.currentBallSpeed += increment;
+            if(PlayController.playVars.playing == true){
+                //Increase all balls speed        
+                var speedIncrease = function(increment){
+                    PlayController.playVars.currentBallSpeed += increment;
 
-                this.game.ballGroup.forEach(function(item) {
-                    item.speedUpdate(increment);
-                });
-                console.log('Ball Speed Increased: ' + speed)
-            }.bind(this);
+                    this.game.ballGroup.forEach(function(item) {
+                        item.speedUpdate(increment);
+                    });
+                    console.log('Ball Speed Increased: ' + speed)
+                }.bind(this);
 
-            PlayController.playVars.currentBallSpeed += PlayController.playVars.ballSpeedIncrement;
-            
-            //Increase ball speed at time in seconds of play
-            speedIncrease(PlayController.playVars.currentBallSpeed);
+                PlayController.playVars.currentBallSpeed += PlayController.playVars.ballSpeedIncrement;
 
-            this.overlay = new Overlay(this.game, this.game.world.centerX, this.game.world.centerY, 'fast_forward');
+                //Increase ball speed at time in seconds of play
+                speedIncrease(PlayController.playVars.currentBallSpeed);
+
+                this.overlay = new Overlay(this.game, this.game.world.centerX, this.game.world.centerY, 'fast_forward');
+            }
         }
     }
     

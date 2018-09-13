@@ -77,6 +77,7 @@ class MainState extends Phaser.State {
             if(PlayController.playVars.playing){
                 this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
                 PlayController.playVars.playing = false;
+                this.playing = false;
             }
         }
         
@@ -89,6 +90,7 @@ class MainState extends Phaser.State {
 
             this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
             
+            this.playing = true;
             PlayController.playVars.playing = true;
             PlayController.playVars.newLevel = false;
             
