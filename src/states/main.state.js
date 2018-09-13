@@ -5,8 +5,8 @@ import Burst from '../objects/burst';
 
 import PlayController from '../controllers/play.controller';
 
-import MenuLevel from '../ui/menu.level';
-import NextMenu from '../ui/menu.next';
+//import MenuLevel from '../ui/menu.level';
+import MenuNext from '../ui/menu.next';
 
 class MainState extends Phaser.State {
 
@@ -39,7 +39,7 @@ class MainState extends Phaser.State {
         
         //var lvlMenu = new MenuLevel(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
         
-        this.interLevelMenu = new NextMenu(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+        this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
     }
     
     update(){
@@ -75,7 +75,7 @@ class MainState extends Phaser.State {
         if(this.game.blockGroup.countLiving() == 0  && this.game.ballGroup.countLiving() == 0){
 
             if(this.playing){
-                var interLevelMenu = new NextMenu(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+                this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
                 this.playing = false;
             }
         }
@@ -92,7 +92,7 @@ class MainState extends Phaser.State {
             PlayController.playVars.playing = true;
             PlayController.playVars.newLevel = false;
             
-            this.interLevelMenu.destroy();
+            //this.interLevelMenu.destroy();
         }
         
         this.game.physics.arcade.collide(this.game.rayGroup, this.game.blockGroup);
