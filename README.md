@@ -13,3 +13,5 @@ ES6 - Webpack - Phaser CE - Phaser Assetpack
 `npm start`
 
 ### Started using Phaser Community Edition Boilerplate ##
+
+COPYRIGHT JJWALLACE
