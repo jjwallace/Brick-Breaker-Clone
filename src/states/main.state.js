@@ -12,9 +12,7 @@ class MainState extends Phaser.State {
 
     create() {
         
-        
-        this.levelNum = 0;
-        this.level = 'lvl' + this.levelNum;
+        this.level = 'lvl' + PlayController.playVars.level;
         
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 			
@@ -39,7 +37,7 @@ class MainState extends Phaser.State {
         
         //var lvlMenu = new MenuLevel(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
         
-        //this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+        this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
     }
     
     update(){
@@ -85,8 +83,8 @@ class MainState extends Phaser.State {
         this.newLevel = PlayController.playVars.newLevel;
         
         if(this.playing == false && this.newLevel == true){
-            this.levelNum ++;
-            this.level = 'lvl' + this.levelNum;
+            PlayController.playVars.level ++;
+            this.level = 'lvl' + PlayController.playVars.level;
 
             this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
             
@@ -106,8 +104,8 @@ class MainState extends Phaser.State {
     }
     
     nextLevel(){
-        this.levelNum ++;
-        this.level = 'lvl' + this.levelNum;
+        this.PlayController.playVars.level ++;
+        this.level = 'lvl' + PlayController.playVars.level;
 
         this.myblocks = new Blocks(this.game, this.game.world.centerX, this.game.world.centerY, 'blank', this.level);
     }

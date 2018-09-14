@@ -28,6 +28,7 @@ class MenuNext extends Phaser.Sprite {
         this.game.menuNextGroup.add(this.menu);
         
         var stars = [0,0,0];
+        var darkStars = [];
         var starCount = 3;
         var starSpacing = 104;
         var starX = x - (starSpacing);
@@ -38,16 +39,27 @@ class MenuNext extends Phaser.Sprite {
             this.star.scale.set(0.0);
             this.game.menuNextGroup.add(this.star);
 
-            game.add.tween(this.star.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Quartic.Out, true, 500 + 120 * i);
+            game.add.tween(this.star.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Elastic.Out, true, 700 + (300 * i));
             stars.push(this.star)
         }
+        this.lvl = PlayController.playVars.level+1;
+        this.message = "Level " + this.lvl + ' Complete'
+        
+        var style = { font: "32px Arial", fill: "#666666", align: "center", boundsAlignH: "center", boundsAlignV: "middle" };
+        this.text = game.add.text(0, 0, this.message, style);
+        this.text.stroke = '#eeeeee';
+        this.text.strokeThickness = 4;
+        this.text.setTextBounds(-150, 0, 300, 100);
+        this.text.scale.set(0.0);
+        game.add.tween(this.text.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Elastic.Out, true, 500);
+        this.addChild(this.text);
         
         this.button = game.add.sprite(x, y + buttonOffset, 'btn_next');
         this.button.anchor.set(0.5);
-        this.button.scale.set(0.0);
+        this.button.scale.set(0.0,1);
         this.game.menuNextGroup.add(this.button);
         
-        game.add.tween(this.button.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Quartic.Out, true, 500);
+        game.add.tween(this.button.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Quartic.Out, true, 1500);
         
         this.menu.inputEnabled = true;
         this.menu.events.onInputDown.add(clickNext, this);
