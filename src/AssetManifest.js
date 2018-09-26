@@ -30,7 +30,6 @@ const AssetManifest = {
     ],
 		'json':[
         'game_data',
-        'lvllist',
         'lvl0',
         'lvl1',
         'lvl2'

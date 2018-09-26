@@ -38,6 +38,12 @@ class MenuNext extends Phaser.Sprite {
             this.star.anchor.set(0.5);
             this.star.scale.set(0.0);
             this.game.menuNextGroup.add(this.star);
+            
+            this.darkStar = game.add.sprite(starX + (i * starSpacing), y + starOffset, 'star');
+            this.darkStar.anchor.set(0.5);
+            this.darkStar.tint = Math.random() * 0xffffff;
+            this.addChild(this.darkStar);
+            stars.push(this.star)
 
             game.add.tween(this.star.scale).to( { x:1, y:1 }, 500, Phaser.Easing.Elastic.Out, true, 700 + (300 * i));
             stars.push(this.star)

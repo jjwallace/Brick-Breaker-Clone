@@ -37,7 +37,7 @@ class MainState extends Phaser.State {
         
         //var lvlMenu = new MenuLevel(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
         
-        this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
+        //this.interLevelMenu = new MenuNext(this.game, this.game.world.centerX, this.game.world.centerY, 'blank');
     }
     
     update(){
